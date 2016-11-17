@@ -1,10 +1,14 @@
 import {Component} from '@angular/core';
 
 @Component({
-    selector: 'selectorName',
-    templateUrl: 'templateUrl.html'
+    selector: 'my-component',
+    templateUrl: 'my.component.html'
 })
 
-export class ComponentName {
+export class MyComponent {
+  title = "My internal component";
+
+
+
 
 }
