@@ -1,0 +1,16 @@
+Index: package.json
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- package.json	(date 1479050053000)
++++ package.json	(revision )
+@@ -23,7 +23,7 @@
+     "@angular/platform-server":"~2.0.0",
+     "bootstrap": "~3.3.7",
+     "core-js": "~2.4.1",
+-    "rxjs": "~5.0.0-beta.12",
++    "rxjs": "~5.0.0-rc.3",
+     "ts-helpers": "~1.1.1",
+     "zone.js": "~0.6.23"
+   },
