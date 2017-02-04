@@ -1,10 +1,15 @@
 import {Component} from '@angular/core';
 
+
 @Component({
-    selector: 'app-root',
-    templateUrl: 'app.component.html'
+    selector:"app-root",
+    templateUrl: 'app.component.html',
+
 })
 
 export class AppComponent {
+
+
+  public title:string = 'Tour of heroes 2';
 
 }

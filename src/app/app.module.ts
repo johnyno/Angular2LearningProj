@@ -3,7 +3,9 @@ import { NgModule } from '@angular/core';
 import {FormsModule} from '@angular/forms';
 
 import { AppComponent } from './AppComponent/app.component';
-import { MyComponent } from './Components/my.component';
+import { HeroDetails } from './Components/HeroDetails/heroDetails.component';
+import { HeroesComponent } from './Components/Heroes/heroes.component';
+import { DashboardComponent } from './Components/Dashboard/dashboard.component';
 
 import { RouterModule }   from '@angular/router'
 
@@ -11,11 +13,28 @@ import { RouterModule }   from '@angular/router'
 @NgModule({
   declarations: [
     AppComponent,
-    MyComponent
+    HeroesComponent,
+    HeroDetails,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,
-    FormsModule
+    FormsModule,
+    RouterModule.forRoot([
+      {
+        path: '',
+        redirectTo: '/dashboard',
+        pathMatch: 'full'
+      },
+      {
+        path: 'heroes',
+        component: HeroesComponent
+      },
+      {
+        path: 'dashboard',
+        component: DashboardComponent
+      },
+    ])
 ],
   providers: [],
   bootstrap: [AppComponent]
