@@ -8,6 +8,6 @@ import {Hero} from '../../Models/hero';
 
 })
 
-export class HeroDetails {
+export class HeroDetailsComponent {
   @Input() hero:Hero;
 }

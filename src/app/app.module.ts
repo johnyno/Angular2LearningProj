@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import {FormsModule} from '@angular/forms';
 
 import { AppComponent } from './AppComponent/app.component';
-import { HeroDetails } from './Components/HeroDetails/heroDetails.component';
+import { HeroDetailsComponent } from './Components/HeroDetails/heroDetails.component';
 import { HeroesComponent } from './Components/Heroes/heroes.component';
 import { DashboardComponent } from './Components/Dashboard/dashboard.component';
 
@@ -14,7 +14,7 @@ import { RouterModule }   from '@angular/router'
   declarations: [
     AppComponent,
     HeroesComponent,
-    HeroDetails,
+    HeroDetailsComponent,
     DashboardComponent
   ],
   imports: [

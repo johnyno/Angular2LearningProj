@@ -1,22 +1,30 @@
 import { Hero } from '../../hero';
+import {forEach} from "@angular/router/src/utils/collection";
 
-export const GetHeroes = ()=>{
+export const GetHeroesAsync = ()=>{
   return new Promise(resolve => {
     // Simulate server latency with 2 second delay
-    setTimeout(() => resolve(HEROES), 2000);
+    setTimeout(() => resolve(GetHeroes()), 2000);
   });
 }
 
 
-const HEROES: Hero[] = [
-    {id: 11, name: 'Mr. Nice'},
-    {id: 12, name: 'Narco'},
-    {id: 13, name: 'Bombasto'},
-    {id: 14, name: 'Celeritas'},
-    {id: 15, name: 'Magneta'},
-    {id: 16, name: 'RubberMan'},
-    {id: 17, name: 'Dynama'},
-    {id: 18, name: 'Dr IQ'},
-    {id: 19, name: 'Magma'},
-    {id: 20, name: 'Tornado'}
-];
+
+
+export const GetHeroes = ()=>
+{
+  const HEROES: Hero[] = [
+    new Hero(11, 'Mr. Nice', true),
+    new Hero(12,  'Narco'),
+    new Hero(13,  'Bombasto'),
+    new Hero(14,  'Celeritas'),
+    new Hero(15,  'Magneta', true),
+    new Hero(16,  'RubberMan'),
+    new Hero(17,  'Dynama'),
+    new Hero(18, 'Dr IQ'),
+    new Hero(19,  'Magma'),
+    new Hero(20,  'Tornado', true)
+  ];
+
+  return HEROES;
+}
