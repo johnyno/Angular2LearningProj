@@ -5,6 +5,7 @@ import {DataService} from '../../Models/Services/data.service'
 @Component({
     selector: 'dashboard',
     templateUrl: 'dashboard.component.html',
+    styleUrls: ['dashboard.component.css'],
     providers:[DataService]
 })
 
