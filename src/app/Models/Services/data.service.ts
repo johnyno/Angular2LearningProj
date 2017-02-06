@@ -9,7 +9,11 @@ export class DataService {
 
 
     getHeroes():Promise<Hero[]> {
-      return Promise.resolve(GetHeroesAsync()).then();
+      return Promise.resolve(GetHeroesAsync.then(heroes =>{
+        if(this.heroes == null)
+          this.heroes = heroes;
+        return this.heroes;
+      }));
     }
 
 

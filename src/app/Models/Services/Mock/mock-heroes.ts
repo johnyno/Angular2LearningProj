@@ -1,12 +1,12 @@
 import { Hero } from '../../hero';
 import {forEach} from "@angular/router/src/utils/collection";
 
-export const GetHeroesAsync = ()=>{
-  return new Promise(resolve => {
+export const GetHeroesAsync:Promise<Hero[]> =
+   new Promise(resolve => {
     // Simulate server latency with 2 second delay
     setTimeout(() => resolve(GetHeroes()), 2000);
   });
-}
+
 
 
 
