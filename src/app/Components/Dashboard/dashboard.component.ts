@@ -17,6 +17,6 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit(): void {
     this.dataService.getHeroes()
-      .then(heroes => this.favoriteHeroes = heroes.filter(h=>h.isFavirite == true));
+      .then(heroes => this.favoriteHeroes = heroes.filter(h=>h.isFavorite == true));
   }
 }

@@ -40,4 +40,8 @@ export class HeroesComponent implements OnInit{
   gotoDetail(): void {
     this.router.navigate(['/detail', this.selectedHero.id]);
   }
+
+ // setFavorite(obj:Hero):void {
+  //  obj.isFavorite = !obj.isFavorite;
+ // }
 }

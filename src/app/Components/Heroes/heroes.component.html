@@ -4,6 +4,9 @@
       [class.selected]="hero === selectedHero"
       (click)="onSelect(hero)">
     <span class="badge">{{hero.id}}</span> {{hero.name}}
+
+
+    <input type="checkbox" [(ngModel)]="hero.isFavorite">
   </li>
 
   <div *ngIf="selectedHero">
