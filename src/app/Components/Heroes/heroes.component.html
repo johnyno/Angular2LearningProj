@@ -6,7 +6,8 @@
     <span class="badge">{{hero.id}}</span> {{hero.name}}
 
 
-    <input type="checkbox" [(ngModel)]="hero.isFavorite">
+    <label for="favorite">F:</label>
+    <input type="checkbox" [(ngModel)]="hero.isFavorite" id="favorite">
   </li>
 
   <div *ngIf="selectedHero">
