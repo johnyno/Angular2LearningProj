@@ -4,14 +4,13 @@ import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, Params }   from '@angular/router';
 import { Location }                 from '@angular/common';
 
-import { DataService } from '../../Models/Services/data.service';
+import { DataServiceAbs } from '../../Models/Interfaces/ServicesAbstractions';
 import 'rxjs/add/operator/switchMap';
 
 @Component({
     selector: 'hero-details',
     templateUrl: 'heroDetails.component.html',
     styleUrls: ['heroDetails.component.css'],
-    providers:[DataService]
 })
 
 export class HeroDetailsComponent  implements OnInit {
@@ -19,14 +18,14 @@ export class HeroDetailsComponent  implements OnInit {
   @Input() hero:Hero;
 
   constructor(
-    private dataService: DataService,
+    private dataService: DataServiceAbs,
     private route: ActivatedRoute,
     private location: Location
   ) {}
 
   ngOnInit(): void {
     this.route.params
-      .switchMap((params: Params) => this.dataService.getHero(+params['id']))
+      .switchMap((params: Params) => this.dataService.GetHeroAsync(+params['id']))
       .subscribe(hero => this.hero = hero);
   }
 

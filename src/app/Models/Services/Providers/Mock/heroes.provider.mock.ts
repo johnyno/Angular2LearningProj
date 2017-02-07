@@ -1,15 +1,16 @@
 import {Injectable} from "@angular/core";
-import { Hero } from '../../hero';
-import { IHeroesProvider } from '../../Interfaces/IHeroesProvider';
+import { Hero } from '../../../hero';
+import { HeroesProviderAbs } from '../../../Interfaces/ProvidersAbstractions';
 import {forEach} from "@angular/router/src/utils/collection";
 
 
 @Injectable()
-export class HeroesProviderMock implements IHeroesProvider{
+export class HeroesProviderMock extends HeroesProviderAbs{
 
 
   GetHeroesAsync: Promise<Hero[]> =
     new Promise(resolve => {
+      console.log("GetHeroesAsync mock")
       // Simulate server latency with 2 second delay
       setTimeout(() => resolve(this.GetHeroes()), 2000);
     });

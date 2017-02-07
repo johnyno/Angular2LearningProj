@@ -1,24 +1,27 @@
 import {Injectable} from "@angular/core";
 import {Hero} from "../hero";
-import {IHeroesProvider} from "../Interfaces/IHeroesProvider";
-import {HeroesProviderMock} from "./Mock/mock-heroes";
+import {HeroesProviderAbs} from "../Interfaces/ProvidersAbstractions";
+import {HeroesProviderMock} from "./Providers/Mock/heroes.provider.mock";
+import { DataServiceAbs } from '../Interfaces/ServicesAbstractions';
+import {Observable} from "rxjs/Observable";
 
 @Injectable()
-export class DataService {
+export class DataService extends DataServiceAbs{
 
-  private HeroesProvider:IHeroesProvider;
+ // private HeroesProvider:IHeroesProvider;
   private heroes:Hero[];
 
 
-  constructor()
+  constructor(private HeroesProvider:HeroesProviderAbs)
   {
+    super();
+
     console.log("DataService constructor");
-    this.HeroesProvider = new HeroesProviderMock();
   }
 
 
 
-    getHeroes():Promise<Hero[]> {
+  GetHeroesAsync():Promise<Hero[]> {
       return Promise.resolve(this.HeroesProvider.GetHeroesAsync.then(heroes =>{
         if(this.heroes === undefined)
           this.heroes = heroes;
@@ -27,8 +30,8 @@ export class DataService {
     }
 
 
-    getHero(id: number): Promise<Hero> {
-    return  Promise.resolve(this.getHeroes()
+  GetHeroAsync(id: number): Promise<Hero> {
+    return  Promise.resolve(this.GetHeroesAsync()
       .then(heroes => heroes.find(hero => hero.id === id)));
   }
 
