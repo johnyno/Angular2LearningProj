@@ -8,7 +8,6 @@ import { Router } from '@angular/router';
     selector: 'heroes',
     templateUrl: 'heroes.component.html',
     styleUrls: ['heroes.component.css'],
-    providers:[DataService]
 })
 
 export class HeroesComponent implements OnInit{
@@ -19,9 +18,14 @@ export class HeroesComponent implements OnInit{
 
 
   constructor(private dataService:DataService,
-              private router: Router,){}
+              private router: Router,){
+    console.log("Heroes constructor " + dataService )
+  }
 
   ngOnInit(): void {
+
+    console.log("Heroes onInit ");
+
     this.dataService.getHeroes()
       .then(heroes => {
         this.heroes = heroes

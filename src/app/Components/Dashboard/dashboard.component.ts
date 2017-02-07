@@ -6,17 +6,21 @@ import {DataService} from '../../Models/Services/data.service'
     selector: 'dashboard',
     templateUrl: 'dashboard.component.html',
     styleUrls: ['dashboard.component.css'],
-    providers:[DataService]
 })
 
 export class DashboardComponent implements OnInit {
 
   favoriteHeroes:Hero[];
 
-  constructor(private dataService: DataService) { }
+  constructor(private dataService: DataService) {
+    console.log("Dashboard constructor " + dataService )
+  }
 
   ngOnInit(): void {
+    console.log("Dashboard onInit ");
+
     this.dataService.getHeroes()
-      .then(heroes => this.favoriteHeroes = heroes.filter(h=>h.isFavorite == true));
+      .then(
+        heroes => this.favoriteHeroes = heroes.filter(h=>h.isFavorite == true));
   }
 }
