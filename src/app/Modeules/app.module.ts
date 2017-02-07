@@ -14,6 +14,7 @@ import { DashboardComponent } from '../Components/Dashboard/dashboard.component'
 
 import { HeroesProviderAbs } from '../Models/Interfaces/ProvidersAbstractions';
 import { HeroesProviderMock } from '../Models/Services/Providers/Mock/heroes.provider.mock';
+import { HeroesProviderHTTP } from '../Models/Services/Providers/Http/heroes.provider.http';
 
 import { DataServiceAbs } from '../Models/Interfaces/ServicesAbstractions';
 import { DataService } from '../Models/Services/data.service';
@@ -37,7 +38,7 @@ import { AppRoutingModule }     from './app.routing.module';
     AppRoutingModule
 ],
   providers: [{provide:DataServiceAbs, useClass:DataService},
-              {provide:HeroesProviderAbs, useClass:HeroesProviderMock}],
+              {provide:HeroesProviderAbs, useClass:HeroesProviderHTTP}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
