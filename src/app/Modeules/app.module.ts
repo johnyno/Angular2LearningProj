@@ -38,7 +38,7 @@ import { AppRoutingModule }     from './app.routing.module';
     AppRoutingModule
 ],
   providers: [{provide:DataServiceAbs, useClass:DataService},
-              {provide:HeroesProviderAbs, useClass:HeroesProviderHTTP}],
+              {provide:HeroesProviderAbs, useClass:HeroesProviderMock}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

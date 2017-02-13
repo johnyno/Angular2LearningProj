@@ -30,8 +30,7 @@ export class HeroesComponent implements OnInit{
       .then(heroes => {
         this.heroes = heroes
 
-        if(this.heroes.length > 0)
-          this.onSelect(this.heroes[0]);
+        this.selectFirstHero();
       });
   }
 
@@ -40,12 +39,30 @@ export class HeroesComponent implements OnInit{
     this.selectedHero = hero;
   }
 
+  add(name: string): void {
+    name = name.trim();
+    if (!name) { return; }
+    this.dataService.CreateHeroAsync(name)
+      .then(hero => {
+        //this.selectedHero = null;
+      });
+  }
+
+  delete(hero: Hero): void {
+    this.dataService.DeleteHeroAsync(hero)
+      .then(() => {
+        if (this.selectedHero === hero)
+          this.selectFirstHero();
+      });
+  }
 
   gotoDetail(): void {
     this.router.navigate(['/detail', this.selectedHero.id]);
   }
 
- // setFavorite(obj:Hero):void {
-  //  obj.isFavorite = !obj.isFavorite;
- // }
+
+  private selectFirstHero():void{
+    if(this.heroes.length > 0)
+      this.onSelect(this.heroes[0]);
+  }
 }

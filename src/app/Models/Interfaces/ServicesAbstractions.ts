@@ -1,8 +1,14 @@
 import { Hero } from '../hero';
 
-export abstract class DataServiceAbs{
+export abstract class DataServiceAbs {
 
-  abstract GetHeroesAsync():Promise<Hero[]>;
+  abstract GetHeroesAsync(): Promise<Hero[]>;
 
   abstract GetHeroAsync(id: number): Promise<Hero>;
+
+  abstract  UpdateHeroAsync(hero: Hero): Promise<Hero>;
+
+  abstract CreateHeroAsync(name:string):Promise<Hero>;
+
+  abstract DeleteHeroAsync(hero: Hero):Promise<void>;
 }

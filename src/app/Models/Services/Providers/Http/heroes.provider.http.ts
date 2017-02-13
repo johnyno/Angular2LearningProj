@@ -26,20 +26,48 @@ export class InMemoryDataService implements InMemoryDbService {
 }
 
 
-
-
 @Injectable()
 export class HeroesProviderHTTP extends HeroesProviderAbs {
   private heroesUrl = 'api/heroes';  // URL to web api
+  private headers = new Headers({'Content-Type': 'application/json'});
   constructor(private http: Http) {
     super();
   }
 
-  GetHeroesAsync: Promise<Hero[]> =
+  GetHeroes: Promise<Hero[]> =
      this.http.get(this.heroesUrl)
       .toPromise()
       .then(response => response.json().data as Hero[])
       .catch(this.handleError);
+
+
+  UpdateHero(hero:Hero):Promise<Hero>{
+    return new Promise(resolve=>{
+      const url = `${this.heroesUrl}/${hero.id}`;
+      return this.http
+        .put(url, JSON.stringify(hero), {headers: this.headers})
+        .toPromise()
+        .then(() => hero)
+        .catch(this.handleError);
+    });
+  }
+
+  CreateHero(name:string):Promise<Hero> {
+    return new Promise(resolve => {
+      return this.http
+        .post(this.heroesUrl, JSON.stringify({name: name}), {headers: this.headers})
+        .toPromise()
+        .then(res => res.json().data)
+        .catch(this.handleError);
+    });
+  }
+
+  DeleteHero(hero:Hero):Promise<Hero> {
+    return new Promise(resolve => {
+
+    //todo: to develop
+    });
+  }
 
 
   private handleError(error: any): Promise<any> {
