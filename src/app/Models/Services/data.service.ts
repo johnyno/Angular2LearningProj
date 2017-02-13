@@ -68,8 +68,4 @@ export class DataService extends DataServiceAbs{
           .catch((e) => console.error('Delete element error!', e.Message));
       })
     )};
-
-
-
-
 }

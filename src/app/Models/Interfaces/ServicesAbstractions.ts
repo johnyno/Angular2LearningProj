@@ -12,3 +12,7 @@ export abstract class DataServiceAbs {
 
   abstract DeleteHeroAsync(hero: Hero):Promise<void>;
 }
+
+export abstract class HeroSearchServiceAbs{
+  abstract Search(text:string);
+}
