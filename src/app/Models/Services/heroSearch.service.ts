@@ -11,10 +11,9 @@ import {DataServiceAbs,HeroSearchServiceAbs} from "../Interfaces/ServicesAbstrac
 
 @Injectable()
 export class HeroSearchService extends HeroSearchServiceAbs{
-  constructor(
-    private dataService:DataServiceAbs,
-    private http: Http) {
-    super();}
+  constructor(private dataService:DataServiceAbs) {
+    super();
+  }
 
 
   Search(term: string): Observable<Hero[]> {
