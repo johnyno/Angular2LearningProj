@@ -16,6 +16,7 @@ import 'rxjs/add/operator/switchMap';
 export class HeroDetailsComponent  implements OnInit {
 
   @Input() hero:Hero;
+  public message:string;
 
   constructor(
     private dataService: DataServiceAbs,
@@ -23,18 +24,28 @@ export class HeroDetailsComponent  implements OnInit {
     private location: Location
   ) {}
 
-  ngOnInit(): void {
+   ngOnInit(): void {
     this.route.params
-      .switchMap((params: Params) => this.dataService.GetHeroAsync(+params['id']))
+      .switchMap( (params: Params) =>  this.dataService.GetHeroAsync(+params['id']))
       .subscribe(hero => this.hero = hero);
   }
 
-  save(): void {
-    this.dataService.UpdateHeroAsync(this.hero)
-      .then(() => this.goBack());
+
+
+  async save(): Promise<void> {
+    try {
+      let newHero: Hero = await this.dataService.UpdateHeroAsync(this.hero);
+      this.message = 'Saved ' + newHero.name;
+      //this.goBack();
+    }
+    catch(e){
+      console.error('Component Save hero error!', e.message)
+    }
   }
 
   goBack(): void {
     this.location.back();
   }
+
+
 }

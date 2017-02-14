@@ -1,4 +1,4 @@
-import {JModel} from "../Models/jmodel"
+import {JModel} from "./Inra/jmodel"
 export class Hero implements JModel{
 
   constructor(public id:number,

@@ -13,11 +13,10 @@ export class DashboardComponent implements OnInit {
   favoriteHeroes: Hero[];
 
   constructor(private dataService: DataServiceAbs) {
-    //console.log("Dashboard constructor " + dataService )
+
   }
 
   async ngOnInit(): Promise<void> {
-    //console.log("Dashboard onInit ");
     try {
       let heroes = await this.dataService.GetHeroesAsync();
       this.favoriteHeroes = heroes.filter(h => h.isFavorite == true);

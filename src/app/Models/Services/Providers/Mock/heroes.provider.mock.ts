@@ -1,6 +1,6 @@
 import {Injectable} from "@angular/core";
 import { Hero } from '../../../hero';
-import { Responce } from '../../../../ErrorHandling/responce';
+import { Responce } from '../../../Inra/responce';
 import { HeroesProviderAbs } from '../../../Interfaces/ProvidersAbstractions';
 import {forEach} from "@angular/router/src/utils/collection";
 

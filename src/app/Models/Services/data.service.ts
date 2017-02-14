@@ -1,7 +1,7 @@
 ///<reference path="../Interfaces/ServicesAbstractions.ts"/>
 import {Injectable} from "@angular/core";
 import {Hero} from "../hero";
-import {Responce} from "../../ErrorHandling/responce";
+import {Responce} from "../Inra/responce";
 import {HeroesProviderAbs} from "../Interfaces/ProvidersAbstractions";
 import {HeroesProviderMock} from "./Providers/Mock/heroes.provider.mock";
 import { DataServiceAbs } from '../Interfaces/ServicesAbstractions';
@@ -15,7 +15,6 @@ export class DataService extends DataServiceAbs {
 
   constructor(private HeroesProvider: HeroesProviderAbs) {
     super();
-    //console.log("DataService constructor");
   }
 
 
@@ -45,28 +44,39 @@ export class DataService extends DataServiceAbs {
   async UpdateHeroAsync(hero: Hero): Promise<Hero> {
       let heroes = await this.GetHeroesAsync();
 
-      let heroToUpdate = heroes.find(h => h.id === hero.id)[0];
-      if(heroToUpdate) {
+      let withTheSameName:Hero = heroes.find(h => h.id != hero.id && h.name == hero.name);
+      if(!withTheSameName) {
         let res:Responce<Hero> = await this.HeroesProvider.UpdateHero(hero);
         if(res.IsSuccessed){
           //todo: heroToUpdate = res.Model;
-          return heroToUpdate;
+          return res.Model;
         }
        throw new Error('Update responce has error: '+ res.error);
       }
+      else
+        throw new Error('Hero with the same name exists');
     }
 
 
 
   async CreateAndAddHeroAsync(name: string): Promise<Hero> {
+      let heroes = await this.GetHeroesAsync();
+
+    let hero = heroes.find(hero => hero.name === name);
+    if(hero)
+      throw new Error('Hero with the same name already exists.');
+    else{
       let res:Responce<Hero> = await this.HeroesProvider.CreateHero(name);
       if(res.IsSuccessed){
         this.heroes.push(res.Model);
         return res.Model;
       }
       else{
-        throw new Error('Create new hero responce has error: '+ res.error);
+        throw new Error('Create new hero response has error: '+ res.error);
       }
+    }
+
+
   }
 
   async DeleteHeroAsync(hero: Hero): Promise<void> {

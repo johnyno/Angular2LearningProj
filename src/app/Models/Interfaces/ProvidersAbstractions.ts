@@ -1,5 +1,5 @@
 import { Hero } from '../hero';
-import {Responce} from "../../ErrorHandling/responce"
+import {Responce} from "../Inra/responce"
 
 export abstract class HeroesProviderAbs{
   abstract async GetHeroes():Promise<Responce<Hero[]>>;

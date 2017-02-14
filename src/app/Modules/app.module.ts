@@ -23,6 +23,8 @@ import { HeroSearchService } from '../Models/Services/heroSearch.service';
 
 
 import { AppRoutingModule }     from './app.routing.module';
+import { HighlightDirective }     from '../Directives/highlight.directive';
+import { AwesomePipe }     from '../Pipes/awesome.pipe';
 
 
 @NgModule({
@@ -31,7 +33,9 @@ import { AppRoutingModule }     from './app.routing.module';
     HeroesComponent,
     HeroDetailsComponent,
     DashboardComponent,
-    HeroSearchComponent
+    HeroSearchComponent,
+    HighlightDirective,
+    AwesomePipe,
   ],
   imports: [
     BrowserModule,
