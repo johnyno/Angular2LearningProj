@@ -34,12 +34,14 @@ export class HeroesProviderHTTP extends HeroesProviderAbs {
     super();
   }
 
-  GetHeroes: Promise<Hero[]> =
-     this.http.get(this.heroesUrl)
-      .toPromise()
-      .then(response => response.json().data as Hero[])
-      .catch(this.handleError);
-
+  GetHeroes(): Promise<Hero[]> {
+    return null;
+   // return new
+  //  this.http.get(this.heroesUrl)
+  //    .toPromise()
+  //    .then(response => response.json().data as Hero[])
+  //    .catch(this.handleError);
+  }
 
   UpdateHero(hero:Hero):Promise<Hero>{
     return new Promise(resolve=>{

@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {Hero} from "../../Models/hero";
+import {Responce} from "../../ErrorHandling/responce";
 import { DataServiceAbs } from '../../Models/Interfaces/ServicesAbstractions';
 
 import { Router } from '@angular/router';
@@ -19,19 +20,18 @@ export class HeroesComponent implements OnInit{
 
   constructor(private dataService:DataServiceAbs,
               private router: Router,){
-    console.log("Heroes constructor " + dataService )
+   // console.log("Heroes constructor " + dataService )
   }
 
-  ngOnInit(): void {
+  async ngOnInit(): Promise<void> {
+    try {
+      this.heroes = await this.dataService.GetHeroesAsync();
+      this.selectFirstHero();
+    }
+    catch(e){
+      console.error(e.message);
+    }
 
-    console.log("Heroes onInit ");
-
-    this.dataService.GetHeroesAsync()
-      .then(heroes => {
-        this.heroes = heroes
-
-        this.selectFirstHero();
-      });
   }
 
 
@@ -39,21 +39,32 @@ export class HeroesComponent implements OnInit{
     this.selectedHero = hero;
   }
 
-  add(name: string): void {
-    name = name.trim();
-    if (!name) { return; }
-    this.dataService.CreateHeroAsync(name)
-      .then(hero => {
-        //this.selectedHero = null;
-      });
+  async add(name: string): Promise<void> {
+    if (!name.trim()) {
+      console.error('The name cant be empty');
+      return;
+    }
+    try {
+      await this.dataService.CreateAndAddHeroAsync(name);
+    }
+    catch(e){
+      console.error(e.message);
+    }
+
+
+
   }
 
-  delete(hero: Hero): void {
-    this.dataService.DeleteHeroAsync(hero)
-      .then(() => {
-        if (this.selectedHero === hero)
-          this.selectFirstHero();
-      });
+  async delete(hero: Hero): Promise<void> {
+    try{
+      await this.dataService.DeleteHeroAsync(hero);
+
+      if (this.selectedHero === hero)
+        this.selectFirstHero();
+    }
+    catch(e) {
+      console.error('Component Delete error!', e.Message)
+    }
   }
 
   gotoDetail(): void {

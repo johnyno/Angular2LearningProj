@@ -10,17 +10,22 @@ import { DataServiceAbs } from '../../Models/Interfaces/ServicesAbstractions';
 
 export class DashboardComponent implements OnInit {
 
-  favoriteHeroes:Hero[];
+  favoriteHeroes: Hero[];
 
   constructor(private dataService: DataServiceAbs) {
-    console.log("Dashboard constructor " + dataService )
+    //console.log("Dashboard constructor " + dataService )
   }
 
-  ngOnInit(): void {
-    console.log("Dashboard onInit ");
-
-    this.dataService.GetHeroesAsync()
-      .then(
-        heroes => this.favoriteHeroes = heroes.filter(h=>h.isFavorite == true));
+  async ngOnInit(): Promise<void> {
+    //console.log("Dashboard onInit ");
+    try {
+      let heroes = await this.dataService.GetHeroesAsync();
+      this.favoriteHeroes = heroes.filter(h => h.isFavorite == true);
+    }
+    catch (e) {
+      console.error(e.message);
+    }
   }
+
+
 }

@@ -8,7 +8,7 @@ export abstract class DataServiceAbs {
 
   abstract  UpdateHeroAsync(hero: Hero): Promise<Hero>;
 
-  abstract CreateHeroAsync(name:string):Promise<Hero>;
+  abstract CreateAndAddHeroAsync(name:string):Promise<Hero>;
 
   abstract DeleteHeroAsync(hero: Hero):Promise<void>;
 }

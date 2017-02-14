@@ -1,8 +1,9 @@
 import { Hero } from '../hero';
+import {Responce} from "../../ErrorHandling/responce"
 
 export abstract class HeroesProviderAbs{
-  abstract GetHeroes:Promise<Hero[]>;
-  abstract UpdateHero(hero:Hero):Promise<Hero>
-  abstract CreateHero(name:string):Promise<Hero>
-  abstract DeleteHero(hero:Hero):Promise<void>
+  abstract async GetHeroes():Promise<Responce<Hero[]>>;
+  abstract async  UpdateHero(hero:Hero):Promise<Responce<Hero>>;
+  abstract async CreateHero(name:string):Promise<Responce<Hero>>;
+  abstract async DeleteHero(hero:Hero):Promise<Responce<boolean>>;
 }

@@ -1,5 +1,6 @@
 import {Injectable} from "@angular/core";
 import { Hero } from '../../../hero';
+import { Responce } from '../../../../ErrorHandling/responce';
 import { HeroesProviderAbs } from '../../../Interfaces/ProvidersAbstractions';
 import {forEach} from "@angular/router/src/utils/collection";
 
@@ -9,45 +10,39 @@ export class HeroesProviderMock extends HeroesProviderAbs{
 
   private maxId:number;
 
-  GetHeroes: Promise<Hero[]> =
-    new Promise(resolve => {
-         setTimeout(() => resolve(this.GetHeroesInt()), 2000)
-    });
-
-
-
-  UpdateHero(hero:Hero):Promise<Hero>{
-    return new Promise(resolve=>{
-      setTimeout(() => resolve(hero), 2000);
-    });
-  }
-
-  CreateHero(name:string):Promise<Hero>{
-    return new Promise(resolve=>{
-
-      let ret;
-
-      setTimeout(() =>  ret = resolve(new Hero(++this.maxId, name, true)), 2000);
-
-      return ret;
-    });
-  }
-
-
-  DeleteHero(hero:Hero):Promise<void> {
+  GetHeroes(): Promise<Responce<Hero[]>> {
     return new Promise(resolve => {
-
-       let ret;
-
-       setTimeout(() =>  ret = resolve(()=>{
-         if(hero.isFavorite)
-           throw new Error('Favorite item cant be deleted');
-       }), 2000);
-
-       return ret;
+      setTimeout(() => resolve(
+        new Responce<Hero[]>(true,this.GetHeroesInt())
+      ), 2000)
+    });
+  }
 
 
+  UpdateHero(hero:Hero):Promise<Responce<Hero>>{
+    return new Promise(resolve=>{
+      setTimeout(() => resolve(
+        new Responce<Hero>(true,hero)
+      ), 2000);
+    });
+  }
 
+  CreateHero(name:string):Promise<Responce<Hero>>{
+    return new Promise<Responce<Hero>>(resolve=>{
+      setTimeout(() => resolve(
+        new Responce<Hero>(true,new Hero(++this.maxId, name))
+      ), 2000);
+    });
+  }
+
+
+  DeleteHero(hero:Hero):Promise<Responce<boolean>> {
+    return new Promise<Responce<boolean>>(resolve => {
+      setTimeout(() => resolve(
+        // if(hero.isFavorite)
+        new Responce<boolean>(true, true)
+
+      ), 2000);
     });
   }
 
