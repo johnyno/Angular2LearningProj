@@ -1,8 +1,8 @@
 import { NgModule }            from '@angular/core';
 import { RouterModule,Routes }        from '@angular/router';
 
-import { UsersComponent }    from '../Components/Users/users.component';
-import {UsersShellComponent} from "../@Shell/users.shell.component";
+import { UsersComponent }    from './Components/Users/users.component';
+import {UsersShellComponent} from "./@Shell/users.shell.component";
 
 const routes: Routes = [
   { path: '',  component: UsersShellComponent,

@@ -1,9 +1,9 @@
 import { NgModule }     from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { HeroesShellComponent }   from '../Components/@Shell/heroes.shell.component';
-import { DashboardComponent }   from '../Components/Dashboard/dashboard.component';
-import { HeroDetailsComponent } from '../Components/HeroDetails/heroDetails.component';
-import { HeroesComponent } from '../Components/Heroes/heroes.component';
+import { HeroesShellComponent }   from './Components/@Shell/heroes.shell.component';
+import { DashboardComponent }   from './Components/Dashboard/dashboard.component';
+import { HeroDetailsComponent } from './Components/HeroDetails/heroDetails.component';
+import { HeroesComponent } from './Components/Heroes/heroes.component';
 
 
 

@@ -1,7 +1,7 @@
 import { Component, OnInit }      from '@angular/core';
 
 //import { Contact, ContactService } from './contact.service';
-import { DataServiceAbs }    from '../../../../Models/Interfaces/ServicesAbstractions';
+import { DataServiceAbs }    from '../../../Core/Models/Interfaces/ServicesAbstractions';
 
 @Component({
   selector: 'users',
