@@ -8,9 +8,9 @@ import 'rxjs/add/observable/of';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/debounceTime';
 import 'rxjs/add/operator/distinctUntilChanged';
-import { HeroSearchService } from '../../../Models/Services/heroSearch.service';
-import { Hero } from '../../../Models/hero';
-import {HeroSearchServiceAbs} from "../../../Models/Interfaces/ServicesAbstractions";
+import { HeroSearchService } from '../../../../Models/Services/heroSearch.service';
+import { Hero } from '../../../../Models/hero';
+import {HeroSearchServiceAbs} from "../../../../Models/Interfaces/ServicesAbstractions";
 
 @Component({
   selector: 'hero-search',

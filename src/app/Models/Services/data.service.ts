@@ -21,7 +21,7 @@ export class DataService extends DataServiceAbs {
   async GetHeroesAsync(): Promise<Hero[]> {
     if (!this.heroes) {
       let res: Responce<Hero[]> = await this.HeroesProvider.GetHeroes();
-      if (res.IsSuccessed) {
+      if (res.isSuccessed) {
         this.heroes = res.Model;
       }
       else{
@@ -47,7 +47,7 @@ export class DataService extends DataServiceAbs {
       let withTheSameName:Hero = heroes.find(h => h.id != hero.id && h.name == hero.name);
       if(!withTheSameName) {
         let res:Responce<Hero> = await this.HeroesProvider.UpdateHero(hero);
-        if(res.IsSuccessed){
+        if(res.isSuccessed){
           //todo: heroToUpdate = res.Model;
           return res.Model;
         }
@@ -67,7 +67,7 @@ export class DataService extends DataServiceAbs {
       throw new Error('Hero with the same name already exists.');
     else{
       let res:Responce<Hero> = await this.HeroesProvider.CreateHero(name);
-      if(res.IsSuccessed){
+      if(res.isSuccessed){
         this.heroes.push(res.Model);
         return res.Model;
       }
@@ -82,7 +82,7 @@ export class DataService extends DataServiceAbs {
   async DeleteHeroAsync(hero: Hero): Promise<void> {
     let res:Responce<boolean> = await this.HeroesProvider.DeleteHero(hero);
 
-    if(!res.IsSuccessed)
+    if(!res.isSuccessed)
       throw new Error('Delete responce has error: '+ res.error);
     else {
       var index = this.heroes.indexOf(hero);
