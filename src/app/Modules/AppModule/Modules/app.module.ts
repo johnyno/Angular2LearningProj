@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { HttpModule }    from '@angular/http';
 import{ HeroesModule }      from '../../../Modules/HeroesManagementModule/Modules/heroes.module';
 import{ UsersModule }      from '../../../Modules/UsersManagementModule/Modules/users.module';
+import{ SharedModule }      from '../../../Modules/Shared/Modules/shared.module';
 import { RouterModule } from '@angular/router'
 
 
@@ -20,7 +21,6 @@ import { DataService } from '../../../Models/Services/data.service';
 
 
 import { AppRoutingModule }     from './app.routing.module';
-import { HighlightDirective }     from '../Directives/highlight.directive';
 
 
 @NgModule({
@@ -36,8 +36,6 @@ import { HighlightDirective }     from '../Directives/highlight.directive';
 
   declarations: [
     AppComponent,
-    HighlightDirective,
-
   ],
 
   providers: [{provide:DataServiceAbs, useClass:DataService}],

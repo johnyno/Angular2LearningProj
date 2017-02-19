@@ -16,15 +16,14 @@ import { HeroSearchComponent } from '../Components/HeroSearch/heroSearch.compone
 import { HeroesRoutingModule } from './heroes.routing.module';
 
 import { HeroSearchService } from '../../../Models/Services/heroSearch.service';
-import { DataServiceAbs , HeroSearchServiceAbs} from '../../../Models/Interfaces/ServicesAbstractions';
-import { AwesomePipe }     from '../Pipes/awesome.pipe';
+import { HeroSearchServiceAbs} from '../../../Models/Interfaces/ServicesAbstractions';
 import formatErrorMsg = jasmine.formatErrorMsg;
+import {SharedModule} from "../../Shared/Modules/shared.module";
 
 @NgModule({
   imports:      [
     HeroesRoutingModule,
-    FormsModule,
-    CommonModule
+    SharedModule
   ],
 
   declarations: [
@@ -33,7 +32,6 @@ import formatErrorMsg = jasmine.formatErrorMsg;
     HeroDetailsComponent,
     DashboardComponent,
     HeroSearchComponent,
-    AwesomePipe
   ],
   providers: [
     {provide:HeroesProviderAbs, useClass:HeroesProviderMock},
