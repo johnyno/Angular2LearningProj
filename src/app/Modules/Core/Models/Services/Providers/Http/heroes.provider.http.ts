@@ -28,6 +28,10 @@ export class InMemoryDataService implements InMemoryDbService {
 
 @Injectable()
 export class HeroesProviderHTTP extends HeroesProviderAbs {
+
+  GetLastSavedHeroes(): Promise<Hero[]> {
+    return undefined;
+  }
   private heroesUrl = 'api/heroes';  // URL to web api
   private headers = new Headers({'Content-Type': 'application/json'});
   constructor(private http: Http) {

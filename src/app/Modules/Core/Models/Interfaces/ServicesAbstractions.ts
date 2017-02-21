@@ -4,9 +4,11 @@ export abstract class DataServiceAbs {
 
   abstract GetHeroesAsync(): Promise<Hero[]>;
 
+  abstract GetLastSavedHeroes():Promise<Hero[]>;
+
   abstract GetHeroAsync(id: number): Promise<Hero>;
 
-  abstract  UpdateHeroAsync(hero: Hero): Promise<Hero>;
+  abstract UpdateHeroAsync(hero: Hero): Promise<Hero>;
 
   abstract CreateAndAddHeroAsync(name:string):Promise<Hero>;
 

@@ -10,8 +10,11 @@ import {Observable} from "rxjs/Observable";
 @Injectable()
 export class DataService extends DataServiceAbs {
 
-  private heroes: Hero[];
 
+
+
+  private _heroes: Hero[];
+  private _lastSavedHeroes:Hero[];
 
   constructor(private HeroesProvider: HeroesProviderAbs) {
     super();
@@ -19,18 +22,30 @@ export class DataService extends DataServiceAbs {
 
 
   async GetHeroesAsync(): Promise<Hero[]> {
-    if (!this.heroes) {
+    if (!this._heroes) {
       let res: Responce<Hero[]> = await this.HeroesProvider.GetHeroes();
       if (res.isSuccessed) {
-        this.heroes = res.Model;
+        this._heroes = res.Model;
       }
       else{
         throw new Error(res.error);
       }
     }
-    return this.heroes;
+    return this._heroes;
   }
 
+  async GetLastSavedHeroes(): Promise<Hero[]> {
+    if (!this._lastSavedHeroes) {
+      let res: Responce<Hero[]> = await this.HeroesProvider.GetLastSavedHeroes();
+      if (res.isSuccessed) {
+        this._lastSavedHeroes = res.Model;
+      }
+      else{
+        throw new Error(res.error);
+      }
+    }
+    return this._lastSavedHeroes;
+  }
 
   async GetHeroAsync(id: number): Promise<Hero> {
       let heroes = await this.GetHeroesAsync();
@@ -49,6 +64,7 @@ export class DataService extends DataServiceAbs {
         let res:Responce<Hero> = await this.HeroesProvider.UpdateHero(hero);
         if(res.isSuccessed){
           //todo: heroToUpdate = res.Model;
+          this.UpdateLastSavedHeroes(res.Model);
           return res.Model;
         }
        throw new Error('Update responce has error: '+ res.error);
@@ -68,7 +84,8 @@ export class DataService extends DataServiceAbs {
     else{
       let res:Responce<Hero> = await this.HeroesProvider.CreateHero(name);
       if(res.isSuccessed){
-        this.heroes.push(res.Model);
+        this._heroes.push(res.Model);
+        this.UpdateLastSavedHeroes(res.Model);
         return res.Model;
       }
       else{
@@ -83,12 +100,21 @@ export class DataService extends DataServiceAbs {
     let res:Responce<boolean> = await this.HeroesProvider.DeleteHero(hero);
 
     if(!res.isSuccessed)
-      throw new Error('Delete responce has error: '+ res.error);
+      throw new Error("Delete response has error: " + res.error);
     else {
-      var index = this.heroes.indexOf(hero);
-      this.heroes.splice(index, 1);
+      var index = this._heroes.indexOf(hero);
+      this._heroes.splice(index, 1);
     }
   }
 
+
+
+  private UpdateLastSavedHeroes(newItem:Hero)
+  {
+    this._lastSavedHeroes.unshift(newItem)
+      if(this._lastSavedHeroes.length > 5){
+        this._lastSavedHeroes.splice(-1,1)
+      }
+  }
 
 }

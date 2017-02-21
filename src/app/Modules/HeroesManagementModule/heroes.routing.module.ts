@@ -4,6 +4,7 @@ import { HeroesShellComponent }   from './Components/@Shell/heroes.shell.compone
 import { DashboardComponent }   from './Components/Dashboard/dashboard.component';
 import { HeroDetailsComponent } from './Components/HeroDetails/heroDetails.component';
 import { HeroesComponent } from './Components/Heroes/heroes.component';
+import { RecentlyChangedHeroes } from './Components/RecentlyChangedHeroes/recentlyChangedHeroes.component';
 
 
 
@@ -12,9 +13,15 @@ const routes: Routes = [
 
     children: [
       { path: '',  redirectTo: '/dashboard', pathMatch: 'full'},
+
       { path: 'detail/:id', component: HeroDetailsComponent },
       { path: 'heroes',     component: HeroesComponent },
-      { path: 'dashboard',     component: DashboardComponent }
+      { path: 'dashboard',     component: DashboardComponent },
+      {
+        path: '',
+        outlet: 'sidemenu',
+        component: RecentlyChangedHeroes
+      },
     ]
   },
 ];

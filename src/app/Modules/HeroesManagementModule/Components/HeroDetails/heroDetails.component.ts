@@ -36,7 +36,7 @@ export class HeroDetailsComponent  implements OnInit {
     try {
       let newHero: Hero = await this.dataService.UpdateHeroAsync(this.hero);
       this.message = 'Saved ' + newHero.name;
-      //this.goBack();
+      this.goBack();
     }
     catch(e){
       console.error('Component Save hero error!', e.message)

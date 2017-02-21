@@ -62,7 +62,7 @@ export class HeroesComponent implements OnInit{
         this.selectFirstHero();
     }
     catch(e) {
-      console.error('Component Delete error!', e.Message)
+      console.error('Component Delete error!', e.message)
     }
   }
 

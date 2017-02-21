@@ -10,12 +10,13 @@ import { HeroDetailsComponent } from './Components/HeroDetails/heroDetails.compo
 import { HeroesComponent } from './Components/Heroes/heroes.component';
 import { DashboardComponent } from './Components/Dashboard/dashboard.component';
 import { HeroSearchComponent } from './Components/HeroSearch/heroSearch.component';
+import { RecentlyChangedHeroes } from './Components/RecentlyChangedHeroes/recentlyChangedHeroes.component';
 
 import { HeroesRoutingModule } from './heroes.routing.module';
 
 import { HeroSearchService } from '../Core/Models/Services/heroSearch.service';
 import { HeroSearchServiceAbs} from '../Core/Models/Interfaces/ServicesAbstractions';
-import formatErrorMsg = jasmine.formatErrorMsg;
+
 import {SharedModule} from "../Shared/shared.module";
 
 @NgModule({
@@ -30,6 +31,7 @@ import {SharedModule} from "../Shared/shared.module";
     HeroDetailsComponent,
     DashboardComponent,
     HeroSearchComponent,
+    RecentlyChangedHeroes,
   ],
   providers: [
     {provide:HeroesProviderAbs, useClass:HeroesProviderMock},
