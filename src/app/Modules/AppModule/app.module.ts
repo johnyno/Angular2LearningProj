@@ -21,7 +21,7 @@ import { AppRoutingModule }     from './app.routing.module';
     HeroesModule,
     UsersModule,
     CoreModule,
-    InMemoryWebApiModule.forRoot(InMemoryDataService),
+    //InMemoryWebApiModule.forRoot(InMemoryDataService),
     AppRoutingModule
   ],
 

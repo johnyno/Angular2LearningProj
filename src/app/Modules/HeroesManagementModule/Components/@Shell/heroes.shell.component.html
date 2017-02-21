@@ -6,8 +6,8 @@
   <div class="row row-offcanvas row-offcanvas-right">
     <div class="col-xs-12 col-sm-9">
       <nav>
-        <a routerLink="/dashboard" routerLinkActive="active">Dashboard</a>
-        <a routerLink="/heroes" routerLinkActive="active">All Heroes</a>
+        <a (click)="navigate('dashboard')"  routerLinkActive="active">Dashboard</a>
+        <a (click)="navigate('heroes')" routerLinkActive="active">All Heroes</a>
       </nav>
       <div class="jumbotron">
 
