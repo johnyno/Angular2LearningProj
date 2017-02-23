@@ -1,4 +1,5 @@
 import {Hero} from '../../../Core/Models/hero';
+import {AlertServiceAbs} from '../../../Core/Models/Interfaces/ServicesAbstractions';
 
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, Params }   from '@angular/router';
@@ -16,12 +17,12 @@ import 'rxjs/add/operator/switchMap';
 export class HeroDetailsComponent  implements OnInit {
 
   @Input() hero:Hero;
-  public message:string;
 
   constructor(
     private dataService: DataServiceAbs,
     private route: ActivatedRoute,
-    private location: Location
+    private location: Location,
+    private alertService:AlertServiceAbs
   ) {}
 
    ngOnInit(): void {
@@ -35,11 +36,12 @@ export class HeroDetailsComponent  implements OnInit {
   async save(): Promise<void> {
     try {
       let newHero: Hero = await this.dataService.UpdateHeroAsync(this.hero);
-      this.message = 'Saved ' + newHero.name;
+      this.alertService.reportSuccess('Saved ' + newHero.name, false);
       this.goBack();
     }
     catch(e){
       console.error('Component Save hero error!', e.message)
+      this.alertService.reportError(e.message,false);
     }
   }
 

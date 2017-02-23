@@ -1,5 +1,8 @@
 import { DataServiceAbs } from '../Core/Models/Interfaces/ServicesAbstractions';
 import { DataService } from '../Core/Models/Services/data.service';
+import { AlertServiceAbs } from '../Core/Models/Interfaces/ServicesAbstractions';
+import { AlertService } from '../Core/Models/Services/alert.service';
+import { AlertComponent } from '../Core/Components/Alert/alert.component';
 
 
 import {
@@ -15,9 +18,11 @@ import { HttpModule }    from '@angular/http';
     RouterModule,
     HttpModule,
   ],
+
   exports:      [ BrowserModule,RouterModule,HttpModule ],
 
-  providers: [{provide:DataServiceAbs, useClass:DataService}],
+  providers: [{provide:DataServiceAbs, useClass:DataService},
+              {provide:AlertServiceAbs, useClass:AlertService}],
 })
 
 

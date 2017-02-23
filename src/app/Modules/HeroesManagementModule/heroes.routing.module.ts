@@ -15,13 +15,11 @@ const routes: Routes = [
       { path: '',  redirectTo: '/dashboard', pathMatch: 'full'},
 
       { path: 'detail/:id', component: HeroDetailsComponent },
-      { path: 'heroes',     component: HeroesComponent },
+      { path: 'heroes',     component: HeroesComponent , children: [
+        // { path: '',  outlet: 'sidemenu',component: RecentlyChangedHeroes },
+      ] },
       { path: 'dashboard',     component: DashboardComponent },
-      {
-        path: '',
-        outlet: 'sidemenu',
-        component: RecentlyChangedHeroes
-      },
+      { path: '**',  redirectTo: '/dashboard', pathMatch: 'full'},
     ]
   },
 ];

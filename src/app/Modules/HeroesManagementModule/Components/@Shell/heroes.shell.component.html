@@ -6,15 +6,15 @@
   <div class="row row-offcanvas row-offcanvas-right">
     <div class="col-xs-12 col-sm-9">
       <nav>
-        <a (click)="navigate('dashboard')"  routerLinkActive="active">Dashboard</a>
-        <a (click)="navigate('heroes')" routerLinkActive="active">All Heroes</a>
+        <a class="btn btn-secondary" (click)="navigate('/dashboard')" role="button">Dashboard</a>
+        <a class="btn btn-secondary" (click)="navigate('/heroes')" role="button">All Heroes</a>
       </nav>
       <div class="jumbotron">
 
-      <router-outlet></router-outlet>
-    </div>
+        <router-outlet></router-outlet>
+      </div>
 
-  </div>
+    </div>
     <router-outlet name="sidemenu"></router-outlet>
-</div>
+  </div>
 </div>

@@ -109,8 +109,9 @@ export class DataService extends DataServiceAbs {
 
 
 
-  private UpdateLastSavedHeroes(newItem:Hero)
+  private async UpdateLastSavedHeroes(newItem:Hero)
   {
+    await this.GetLastSavedHeroes();
     this._lastSavedHeroes.unshift(newItem)
       if(this._lastSavedHeroes.length > 5){
         this._lastSavedHeroes.splice(-1,1)

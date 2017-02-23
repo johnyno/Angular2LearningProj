@@ -19,7 +19,11 @@ export class HeroesShellComponent implements OnInit{
   }
 
   navigate(path) {
-    this.router.navigate([{outlets: {primary: path, sidemenu:path}}],
-      {relativeTo: this.route});
+    //if(path == '/heroes') {
+     // let temp = path + '/(sidemenu:' + path + ')';
+      //this.router.navigateByUrl(temp);
+
+      this.router.navigate([path]);
+   // }
   }
 }
