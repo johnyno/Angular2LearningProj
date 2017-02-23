@@ -2,7 +2,7 @@ import { DataServiceAbs } from '../Core/Models/Interfaces/ServicesAbstractions';
 import { DataService } from '../Core/Models/Services/data.service';
 import { AlertServiceAbs } from '../Core/Models/Interfaces/ServicesAbstractions';
 import { AlertService } from '../Core/Models/Services/alert.service';
-import { AlertComponent } from '../Core/Components/Alert/alert.component';
+import { AlertComponent } from '../AppModule/Components/Alert/alert.component';
 
 
 import {

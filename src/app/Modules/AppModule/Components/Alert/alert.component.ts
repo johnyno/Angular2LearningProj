@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 
-import { AlertServiceAbs } from '../../Models/Interfaces/ServicesAbstractions';
-import { Alert } from '../../Models/Inra/alert';
-import {AlertType} from "../../Models/Inra/enums";
+import { AlertServiceAbs } from '../../../Core/Models/Interfaces/ServicesAbstractions';
+import { Alert } from '../../../Core/Models/Inra/alert';
+import {AlertType} from "../../../Core/Models/Inra/enums";
 
 @Component({
   selector: 'alert',
@@ -12,6 +12,7 @@ import {AlertType} from "../../Models/Inra/enums";
 export class AlertComponent implements OnInit{
 
   public alert: Alert;
+  //for the template triggers
   public alertType = AlertType;
 
   constructor(private alertService: AlertServiceAbs) { }
