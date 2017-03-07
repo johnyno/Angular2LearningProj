@@ -1,6 +1,6 @@
 import {Injectable} from "@angular/core";
 import { Hero } from '../../../hero';
-import { Responce } from '../../../Inra/responce';
+import { JResponse } from '../../../Inra/responce';
 import { HeroesProviderAbs } from '../../../Interfaces/ProvidersAbstractions';
 import {forEach} from "@angular/router/src/utils/collection";
 
@@ -11,36 +11,36 @@ export class HeroesProviderMock extends HeroesProviderAbs{
 
   private _maxId:number;
 
-  GetLastSavedHeroes(): Promise<Responce<Hero[]>> {
+  GetLastSavedHeroes(): Promise<JResponse<Hero[]>> {
     return new Promise(resolve=>{setTimeout(()=>resolve(
-      new Responce<Hero[]>(true, this.GetLastSavedHeroesInit())
+      new JResponse<Hero[]>(true, this.GetLastSavedHeroesInit())
     ), 2000)})};
 
 
 
 
-  GetHeroes(): Promise<Responce<Hero[]>> {
+  GetHeroes(): Promise<JResponse<Hero[]>> {
     return new Promise(resolve => {
       setTimeout(() => resolve(
-        new Responce<Hero[]>(true,this.GetHeroesInt())
+        new JResponse<Hero[]>(true,this.GetHeroesInt())
       ), 2000)
     });
   }
 
 
-  UpdateHero(hero:Hero):Promise<Responce<Hero>>{
+  UpdateHero(hero:Hero):Promise<JResponse<Hero>>{
     return new Promise(resolve=>{
       setTimeout(() =>
         resolve(
-        new Responce<Hero>(true,hero)
+        new JResponse<Hero>(true,hero)
       ), 2000);
     });
   }
 
-  CreateHero(name:string):Promise<Responce<Hero>>{
-    return new Promise<Responce<Hero>>(resolve=>{
+  CreateHero(name:string):Promise<JResponse<Hero>>{
+    return new Promise<JResponse<Hero>>(resolve=>{
       setTimeout(() => {
-          resolve(new Responce<Hero>(true, new Hero(++this._maxId, name)))
+          resolve(new JResponse<Hero>(true, new Hero(++this._maxId, name)))
 
         }
         , 2000);
@@ -48,13 +48,13 @@ export class HeroesProviderMock extends HeroesProviderAbs{
   }
 
 
-  DeleteHero(hero:Hero):Promise<Responce<boolean>> {
-    return new Promise<Responce<boolean>>(resolve => {
+  DeleteHero(hero:Hero):Promise<JResponse<boolean>> {
+    return new Promise<JResponse<boolean>>(resolve => {
       setTimeout(() => {
         if(!hero.isFavorite)
-          resolve(new Responce<boolean>(true, true))
+          resolve(new JResponse<boolean>(true, true))
         else
-          resolve(new Responce<boolean>(false, false,"Favorite Hero can't be removed"));
+          resolve(new JResponse<boolean>(false, false,"Favorite Hero can't be removed"));
       }, 2000);
 
     });

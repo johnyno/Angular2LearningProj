@@ -9,17 +9,17 @@ import { RecentlyChangedHeroes } from './Components/RecentlyChangedHeroes/recent
 
 
 const routes: Routes = [
-  { path: '', component: HeroesShellComponent,
+  { path: 'heroes', component: HeroesShellComponent,
 
     children: [
-      { path: '',  redirectTo: '/dashboard', pathMatch: 'full'},
+      { path: '',  redirectTo: 'dashboard', pathMatch: 'full'},
 
       { path: 'detail/:id', component: HeroDetailsComponent },
       { path: 'heroes',     component: HeroesComponent , children: [
         // { path: '',  outlet: 'sidemenu',component: RecentlyChangedHeroes },
       ] },
       { path: 'dashboard',     component: DashboardComponent },
-      { path: '**',  redirectTo: '/dashboard', pathMatch: 'full'},
+      { path: '**',  redirectTo: 'dashboard', pathMatch: 'full'},
     ]
   },
 ];

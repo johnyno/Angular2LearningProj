@@ -13,21 +13,27 @@ import { InMemoryDataService }  from '../Core/Models/Services/Providers/Http/her
 import { AppComponent } from './Components/app.component';
 
 import { AppRoutingModule }     from './app.routing.module';
+import {LoginComponent} from "./Components/Login/login.component";
+import {HomeComponent} from "./Components/Home/home.component";
+import {FormsModule} from "@angular/forms";
 
 
 
 @NgModule({
   imports: [
-    HeroesModule,
-    UsersModule,
+   // HeroesModule,
+   // UsersModule,
     CoreModule,
     //InMemoryWebApiModule.forRoot(InMemoryDataService),
+
     AppRoutingModule
   ],
 
   declarations: [
     AppComponent,
-    AlertComponent
+    AlertComponent,
+    LoginComponent,
+    HomeComponent
   ],
 
   bootstrap: [AppComponent]

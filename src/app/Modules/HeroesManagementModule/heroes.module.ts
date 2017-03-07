@@ -15,7 +15,7 @@ import { RecentlyChangedHeroes } from './Components/RecentlyChangedHeroes/recent
 import { HeroesRoutingModule } from './heroes.routing.module';
 
 import { HeroSearchService } from '../Core/Models/Services/heroSearch.service';
-import { HeroSearchServiceAbs} from '../Core/Models/Interfaces/ServicesAbstractions';
+import { SearchServiceAbs} from '../Core/Models/Interfaces/ServicesAbstractions';
 
 import {SharedModule} from "../Shared/shared.module";
 
@@ -35,7 +35,7 @@ import {SharedModule} from "../Shared/shared.module";
   ],
   providers: [
     {provide:HeroesProviderAbs, useClass:HeroesProviderMock},
-    {provide:HeroSearchServiceAbs, useClass:HeroSearchService}],
+    {provide:SearchServiceAbs, useClass:HeroSearchService}],
 
 })
 export class HeroesModule { }

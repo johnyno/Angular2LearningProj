@@ -2,7 +2,7 @@ import { InMemoryDbService } from 'angular2-in-memory-web-api';
 import {Injectable} from "@angular/core";
 import { Hero } from '../../../hero';
 import { HeroesProviderAbs } from '../../../Interfaces/ProvidersAbstractions';
-import { Responce } from '../../../Inra/responce';
+import { JResponse } from '../../../Inra/responce';
 import {forEach} from "@angular/router/src/utils/collection";
 import { Headers, Http } from '@angular/http';
 import 'rxjs/add/operator/toPromise';
@@ -30,7 +30,7 @@ export class InMemoryDataService implements InMemoryDbService {
 @Injectable()
 export class HeroesProviderHTTP extends HeroesProviderAbs {
 
-  GetLastSavedHeroes(): Promise<Responce<Hero[]>> {
+  GetLastSavedHeroes(): Promise<JResponse<Hero[]>> {
     return undefined;
   }
   private heroesUrl = 'api/heroes';  // URL to web api
@@ -39,7 +39,7 @@ export class HeroesProviderHTTP extends HeroesProviderAbs {
     super();
   }
 
-  GetHeroes(): Promise<Responce<Hero[]>> {
+  GetHeroes(): Promise<JResponse<Hero[]>> {
     return null;
    // return new
   //  this.http.get(this.heroesUrl)
@@ -48,7 +48,7 @@ export class HeroesProviderHTTP extends HeroesProviderAbs {
   //    .catch(this.handleError);
   }
 
-  UpdateHero(hero:Hero):Promise<Responce<Hero>>{
+  UpdateHero(hero:Hero):Promise<JResponse<Hero>>{
     return new Promise(resolve=>{
       const url = `${this.heroesUrl}/${hero.id}`;
       return this.http
@@ -59,7 +59,7 @@ export class HeroesProviderHTTP extends HeroesProviderAbs {
     });
   }
 
-  CreateHero(name:string):Promise<Responce<Hero>> {
+  CreateHero(name:string):Promise<JResponse<Hero>> {
     return new Promise(resolve => {
       return this.http
         .post(this.heroesUrl, JSON.stringify({name: name}), {headers: this.headers})
@@ -69,7 +69,7 @@ export class HeroesProviderHTTP extends HeroesProviderAbs {
     });
   }
 
-  DeleteHero(hero:Hero):Promise<Responce<boolean>> {
+  DeleteHero(hero:Hero):Promise<JResponse<boolean>> {
     return new Promise(resolve => {
 
     //todo: to develop

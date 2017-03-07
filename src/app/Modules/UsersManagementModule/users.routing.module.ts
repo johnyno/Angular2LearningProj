@@ -5,12 +5,12 @@ import { UsersComponent }    from './Components/Users/users.component';
 import {UsersShellComponent} from "./@Shell/users.shell.component";
 
 const routes: Routes = [
-  { path: '',  component: UsersShellComponent,
-    children: [
-      { path: '',  component: UsersComponent },
-   //   { path: 'detail/:id', component: HeroDetailsComponent },
-   //   { path: 'heroes',     component: HeroesComponent }
-    ]
+  { path: 'users',  component: UsersShellComponent,
+   children: [
+     // { path: '',  component: UsersComponent },
+     // { path: 'detail/:id', component: HeroDetailsComponent },
+     // { path: 'heroes',     component: HeroesComponent }
+   ]
   }
 ];
 

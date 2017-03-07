@@ -4,13 +4,13 @@ import { Observable }     from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import 'rxjs/Rx';
 import { Hero }           from '../hero';
-import {DataServiceAbs,HeroSearchServiceAbs} from "../Interfaces/ServicesAbstractions";
+import {DataServiceAbs,SearchServiceAbs} from "../Interfaces/ServicesAbstractions";
 
 
 
 
 @Injectable()
-export class HeroSearchService extends HeroSearchServiceAbs{
+export class HeroSearchService extends SearchServiceAbs{
   constructor(private dataService:DataServiceAbs) {
     super();
   }

@@ -1,7 +1,7 @@
 ///<reference path="../Interfaces/ServicesAbstractions.ts"/>
 import {Injectable} from "@angular/core";
 import {Hero} from "../hero";
-import {Responce} from "../Inra/responce";
+import {JResponse} from "../Inra/responce";
 import {HeroesProviderAbs} from "../Interfaces/ProvidersAbstractions";
 import {HeroesProviderMock} from "./Providers/Mock/heroes.provider.mock";
 import { DataServiceAbs } from '../Interfaces/ServicesAbstractions';
@@ -9,6 +9,25 @@ import {Observable} from "rxjs/Observable";
 
 @Injectable()
 export class DataService extends DataServiceAbs {
+  GeUsersAsync(): Promise<Hero[]> {
+    return undefined;
+  }
+
+  GetUserAsync(id: number): Promise<Hero> {
+    return undefined;
+  }
+
+  UpdateUserAsync(hero: Hero): Promise<Hero> {
+    return undefined;
+  }
+
+  CreateAndAddUserAsync(name: string): Observable<Hero> {
+    return undefined;
+  }
+
+  DeleteUserAsync(hero: Hero): Promise<void> {
+    return undefined;
+  }
 
 
 
@@ -23,7 +42,7 @@ export class DataService extends DataServiceAbs {
 
   async GetHeroesAsync(): Promise<Hero[]> {
     if (!this._heroes) {
-      let res: Responce<Hero[]> = await this.HeroesProvider.GetHeroes();
+      let res: JResponse<Hero[]> = await this.HeroesProvider.GetHeroes();
       if (res.isSuccessed) {
         this._heroes = res.Model;
       }
@@ -36,7 +55,7 @@ export class DataService extends DataServiceAbs {
 
   async GetLastSavedHeroes(): Promise<Hero[]> {
     if (!this._lastSavedHeroes) {
-      let res: Responce<Hero[]> = await this.HeroesProvider.GetLastSavedHeroes();
+      let res: JResponse<Hero[]> = await this.HeroesProvider.GetLastSavedHeroes();
       if (res.isSuccessed) {
         this._lastSavedHeroes = res.Model;
       }
@@ -55,13 +74,12 @@ export class DataService extends DataServiceAbs {
       throw new Error('Hero with id ' + id +'is not found');
   }
 
-
   async UpdateHeroAsync(hero: Hero): Promise<Hero> {
       let heroes = await this.GetHeroesAsync();
 
       let withTheSameName:Hero = heroes.find(h => h.id != hero.id && h.name == hero.name);
       if(!withTheSameName) {
-        let res:Responce<Hero> = await this.HeroesProvider.UpdateHero(hero);
+        let res:JResponse<Hero> = await this.HeroesProvider.UpdateHero(hero);
         if(res.isSuccessed){
           //todo: heroToUpdate = res.Model;
           this.UpdateLastSavedHeroes(res.Model);
@@ -73,8 +91,6 @@ export class DataService extends DataServiceAbs {
         throw new Error('Hero with the same name exists');
     }
 
-
-
   async CreateAndAddHeroAsync(name: string): Promise<Hero> {
       let heroes = await this.GetHeroesAsync();
 
@@ -82,7 +98,7 @@ export class DataService extends DataServiceAbs {
     if(hero)
       throw new Error('Hero with the same name already exists.');
     else{
-      let res:Responce<Hero> = await this.HeroesProvider.CreateHero(name);
+      let res:JResponse<Hero> = await this.HeroesProvider.CreateHero(name);
       if(res.isSuccessed){
         this._heroes.push(res.Model);
         this.UpdateLastSavedHeroes(res.Model);
@@ -97,7 +113,7 @@ export class DataService extends DataServiceAbs {
   }
 
   async DeleteHeroAsync(hero: Hero): Promise<void> {
-    let res:Responce<boolean> = await this.HeroesProvider.DeleteHero(hero);
+    let res:JResponse<boolean> = await this.HeroesProvider.DeleteHero(hero);
 
     if(!res.isSuccessed)
       throw new Error("Delete response has error: " + res.error);
@@ -106,6 +122,18 @@ export class DataService extends DataServiceAbs {
       this._heroes.splice(index, 1);
     }
   }
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

@@ -1,0 +1,16 @@
+<h2 highlight>{{title}}</h2>
+<h1>{{userLoggedIn.username}}</h1>
+<button type="button" (click)="logout()">Logout</button>
+
+<div class="jumbotron">
+  <div class="container">
+    <div class="col-sm-8 col-sm-offset-2">
+      <alert></alert>
+      <nav>
+        <a routerLink="/heroes" routerLinkActive="active">Heroes</a>
+        <a routerLink="/users" routerLinkActive="active">Users</a>
+      </nav>
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>

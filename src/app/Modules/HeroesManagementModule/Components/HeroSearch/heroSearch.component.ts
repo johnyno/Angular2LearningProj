@@ -10,7 +10,7 @@ import 'rxjs/add/operator/debounceTime';
 import 'rxjs/add/operator/distinctUntilChanged';
 import { HeroSearchService } from '../../../Core/Models/Services/heroSearch.service';
 import { Hero } from '../../../Core/Models/hero';
-import {HeroSearchServiceAbs} from "../../../Core/Models/Interfaces/ServicesAbstractions";
+import {SearchServiceAbs} from "../../../Core/Models/Interfaces/ServicesAbstractions";
 
 @Component({
   selector: 'hero-search',
@@ -24,7 +24,7 @@ export class HeroSearchComponent implements OnInit {
   private searchTerms = new Subject<string>();
 
   constructor(
-    private heroSearchService: HeroSearchServiceAbs,
+    private heroSearchService: SearchServiceAbs,
     private router: Router) {}
   // Push a search term into the observable stream.
 
