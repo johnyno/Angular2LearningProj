@@ -22,7 +22,7 @@
     "@angular/router": "^3.1.0",
     "angular2-in-memory-web-api": "0.0.20",
     "core-js": "^2.4.1",
-    "rxjs": "^5.2.0",
+    "rxjs": "*",
     "ts-helpers": "^1.1.1",
     "zone.js": "^0.7.7"
   },
